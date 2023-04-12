@@ -1,7 +1,7 @@
-# Workflow State Tracker
+# Workflow State Tracker.
 
-Generic Workflow State Tracker
+Generic Workflow State Tracker.
 
-Experimental project
+Experimental project:
 
-P.O.C. for a generic state tracker
+P.O.C. for a generic state tracker.
