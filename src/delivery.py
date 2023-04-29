@@ -14,11 +14,11 @@ class ReadyState(StateBase):
             ["awaiting_pickup", "cancelled"]
         )
 
-    def transition(self, delivery, ancillary_state=None):
-        if ancillary_state:
-            if ancillary_state in self.children:
-                delivery.transition(ancillary_state)
-                print(f"{self.name} -> {ancillary_state}")
+    def transition(self, delivery, forced_state=None):
+        if forced_state:
+            if forced_state in self.children:
+                delivery.transition(forced_state)
+                print(f"{self.name} -> {forced_state}")
                 return
             else:
                 raise ValueError("invalid state")
@@ -34,11 +34,11 @@ class AwaitingPickupState(StateBase):
             ["assign_rider", "cancelled"]
         )
 
-    def transition(self, delivery, ancillary_state=None):
-        if ancillary_state:
-            if ancillary_state in self.children:
-                delivery.transition(ancillary_state)
-                print(f"{self.name} -> {ancillary_state}")
+    def transition(self, delivery, forced_state=None):
+        if forced_state:
+            if forced_state in self.children:
+                delivery.transition(forced_state)
+                print(f"{self.name} -> {forced_state}")
                 return
             else:
                 raise ValueError("invalid state")
@@ -53,11 +53,11 @@ class AssignRiderState(StateBase):
             ["on_route", "assign_rider", "cancelled"]
         )
 
-    def transition(self, delivery, ancillary_state=None):
-        if ancillary_state:
-            if ancillary_state in self.children:
-                delivery.transition(ancillary_state)
-                print(f"{self.name} -> {ancillary_state}")
+    def transition(self, delivery, forced_state=None):
+        if forced_state:
+            if forced_state in self.children:
+                delivery.transition(forced_state)
+                print(f"{self.name} -> {forced_state}")
                 return
             else:
                 raise ValueError("invalid state")
@@ -73,11 +73,11 @@ class OnRouteState(StateBase):
             ["delivered", "cancelled"]
         )
 
-    def transition(self, delivery, ancillary_state=None):
-        if ancillary_state:
-            if ancillary_state in self.children:
-                delivery.transition(ancillary_state)
-                print(f"{self.name} -> {ancillary_state}")
+    def transition(self, delivery, forced_state=None):
+        if forced_state:
+            if forced_state in self.children:
+                delivery.transition(forced_state)
+                print(f"{self.name} -> {forced_state}")
                 return
             else:
                 raise ValueError("invalid state")
@@ -90,7 +90,7 @@ class CancelledState(StateBase):
     def __init__(self):
         super().__init__("cancelled")
 
-    def transition(self, ancillary_state=None):
+    def transition(self, forced_state=None):
         print(f"{self.name} is a terminal status")
 
 
@@ -98,7 +98,7 @@ class DeliveredState(StateBase):
     def __init__(self):
         super().__init__("delivered")
 
-    def transition(self, ancillary_state=None):
+    def transition(self, forced_state=None):
         print(f"{self.name} is a terminal status")
 
 delivery_registry = {
