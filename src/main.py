@@ -3,7 +3,9 @@ from delivery import Delivery, delivery_registry
 workflow = {
     "1": delivery_registry
 }
-def main():
+
+
+def normal_workflow():
     d = Delivery("1")
     # Normal flow
     while True:
@@ -14,8 +16,8 @@ def main():
         if d.status == "cancelled" or d.status == "delivered":
             break
 
-    print("\n------------------------------------------\n")
 
+def issue_cancellation_workflow():
     d = Delivery("1")
     # Issue cancelation flow
     while True:
@@ -29,8 +31,7 @@ def main():
         if d.status == "cancelled" or d.status == "delivered":
             break
 
-    print("\n------------------------------------------\n")
-
+def invalid_state_workflow():
     d = Delivery("1")
     # Invalid state flow
     while True:
@@ -48,6 +49,20 @@ def main():
             print("Invalid state provided")
             break
 
+
+def main():
+    """
+    Test different workflow scenarios
+    """
+    normal_workflow()
+
+    print("\n------------------------------------------\n")
+
+    issue_cancellation_workflow()
+
+    print("\n------------------------------------------\n")
+    
+    invalid_state_workflow()
 
 if __name__ == "__main__":
     try:
